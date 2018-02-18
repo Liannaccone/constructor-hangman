@@ -3,13 +3,13 @@ function Letter(character){
 	this.beenGuessed = false;
 	this.displayLetter = function(){
 		if(this.beenGuessed){
-			return this.character;
+			console.log(this.character);
 		}
 		else{ 
-		return " _ ";
+		console.log("_");
 		}
 	};
-	this.check = function(char){
+	this.guess = function(character){
 		if(char === this.character) {
 			this.beenGuessed = true;
 		}
