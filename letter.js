@@ -1,16 +1,16 @@
 function Letter(character){
 	this.character = character;
 	this.beenGuessed = false;
-	this.displayLetter = function(){
+	this.toString = function(){
 		if(this.beenGuessed){
-			console.log(this.character);
+			return this.character;
 		}
 		else{ 
-		console.log("_");
+			return "_";
 		}
 	};
 	this.guess = function(character){
-		if(char === this.character) {
+		if(character === this.character) {
 			this.beenGuessed = true;
 		}
 	};
