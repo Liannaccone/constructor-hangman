@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Liannaccone/constructor-hangman#readme",
   "dependencies": {
+    "chalk": "^2.3.1",
     "inquirer": "^5.1.0"
   }
 }

@@ -1,5 +1,6 @@
 var Word = require("./word.js");
 var inquirer = require("inquirer");
+var chalk = require("chalk");
 
 var wordArr = ["bodhi", "mallard", "dog"];
 var activeWord;
@@ -34,7 +35,7 @@ function initializeGame() {
 	// empties the guessedLettersArr
 	guessedLettersArr = []
 	// resets guessesLeft to 10
-	guessesLeft = 10;
+	guessesLeft = 3;
 }
 
 // function displayStats() {
@@ -61,23 +62,24 @@ function runGame() {
 	}
 	]).then(function(result){
 		if(guessedLettersArr.indexOf(result.userGuess) !== -1){
-			console.log("\nLetter has already been guessed, try again.");
+			console.log(chalk.yellowBright.bold.underline("\nLetter has already been guessed, try again."));
 			runGame();
 		}
 		else if (activeWord.new.indexOf(result.userGuess) !== -1) {
 			activeWord.checkGuess(result.userGuess);
-			console.log("\nCorrect!")
+			console.log(chalk.greenBright.bold.underline("\nCorrect!"))
+			console.log(activeWord.displayArr)
 			runGame();
 		}
 		else{
 			guessesLeft--;
 			if (guessesLeft > 0) {
-				console.log("\nNope, guess again!");
+				console.log(chalk.redBright.bold.underline("\nNope, guess again!"));
 				guessedLettersArr.push(result.userGuess);
 				runGame();
 			}
 			else{
-				console.log("\n* * *  GAME OVER  * * *",
+				console.log(chalk.redBright.bold.underline("\n* * *  GAME OVER  * * *"),
 							"\nYou are out of guesses!",
 							"\nThe correct word is\n");
 				promptPlayAgain();
