@@ -1,5 +1,5 @@
 var Letter = require("./letter.js");
-var displayArr = []
+var displayArr = [];
 
 function Word(word) {
 	this.new = word.split("");

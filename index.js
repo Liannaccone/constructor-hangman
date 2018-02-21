@@ -61,17 +61,42 @@ function runGame() {
 	}
 	]).then(function(result){
 		if(guessedLettersArr.indexOf(result.userGuess) !== -1){
-			console.log("Letter has already been guessed, try again.");
+			console.log("\nLetter has already been guessed, try again.");
 			runGame();
 		}
 		else if (activeWord.new.indexOf(result.userGuess) !== -1) {
 			activeWord.checkGuess(result.userGuess);
+			console.log("\nCorrect!")
 			runGame();
 		}
 		else{
-			console.log("Nope, guess again!");
-			guessedLettersArr.push(result.userGuess);
 			guessesLeft--;
+			if (guessesLeft > 0) {
+				console.log("\nNope, guess again!");
+				guessedLettersArr.push(result.userGuess);
+				runGame();
+			}
+			else{
+				console.log("\n* * *  GAME OVER  * * *",
+							"\nYou are out of guesses!",
+							"\nThe correct word is\n");
+				promptPlayAgain();
+			}
+		}
+	})
+};
+
+function promptPlayAgain() {
+	inquirer.prompt([
+	{
+		type: "confirm",
+		message: "\n Would you like to play again? \n\nEnter 'Y' to begin or 'N' to quit.",
+		name: "userStart",
+		default: true
+	}
+	]).then(function(result) {
+		if(result.userStart) {
+			initializeGame();
 			runGame();
 		}
 	})
