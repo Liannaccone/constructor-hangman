@@ -1,11 +1,13 @@
 var Word = require("./word.js");
+var displayArr = require("./word.js");
 var inquirer = require("inquirer");
 var chalk = require("chalk");
 
-var wordArr = ["bodhi", "mallard", "dog"];
+var wordArr = ["bodhi", "mallard", "dog", "pintail", "vizsla", "labrador", "canvasback", "wigeon", "drake", "spoonbill", "bufflehead"];
 var activeWord;
 var guessedLettersArr;
 var guessesLeft;
+
 
 function welcomeUser() {
 	inquirer.prompt([
@@ -35,24 +37,17 @@ function initializeGame() {
 	// empties the guessedLettersArr
 	guessedLettersArr = []
 	// resets guessesLeft to 10
-	guessesLeft = 3;
+	guessesLeft = 10;
 }
 
-// function displayStats() {
-
-// 	console.log("\nLetters guessed:", guessedLettersArr,
-// 				"\nGuesses left:", guessesLeft,
-// 				"\n");
-// 	activeWord.displayWord();
-// 	console.log("\n")
-// }
 
 function runGame() {
 	console.log("\nLetters guessed:", guessedLettersArr,
 				"\nGuesses left:", guessesLeft,
 				"\n");
 	activeWord.displayWord();
-	console.log("\n")
+	console.log(activeWord.new)
+	console.log("\n");
 	inquirer.prompt([
 	{
 		type: "list",
@@ -68,7 +63,6 @@ function runGame() {
 		else if (activeWord.new.indexOf(result.userGuess) !== -1) {
 			activeWord.checkGuess(result.userGuess);
 			console.log(chalk.greenBright.bold.underline("\nCorrect!"))
-			console.log(activeWord.displayArr)
 			runGame();
 		}
 		else{
